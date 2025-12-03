@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Rckz Tools</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/icons/icon.png" />
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <h1><a href="index.html">Rckz Tools</a></h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="card">
+    <h2>Contact Me</h2>
+    <p>If you have questions, suggestions, or want any custom tools, feel free to message me using the form below.</p>
+
+    <form action="https://formsubmit.co/rckztools@gmail.com" method="POST" style="margin-top: 20px;">
+      
+      <!-- Prevent spam -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <label>Your Name</label>
+      <input type="text" name="name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+
+      <label>Your Email</label>
+      <input type="email" name="email" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;">
+
+      <label>Your Message</label>
+      <textarea name="message" required style="width:100%; padding:10px; height:120px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc;"></textarea>
+
+      <button type="submit" class="cta" style="cursor:pointer;">Send Message</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Alternative Contact</h3>
+    <p>Email directly: <strong>rckztools@gmail.com</strong></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© <span id="year"></span> Rckz Tools</p>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
