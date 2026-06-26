@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>RDAY Live</title><style>
+html,body{margin:0;height:100%;overflow:hidden;background:#020202;color:#fff;font-family:Segoe UI,Arial}
+canvas{position:fixed;inset:0}#wrap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+h1{font-size:68px;letter-spacing:16px;color:#d4af37;text-shadow:0 0 20px #d4af37;margin:0}
+#date{font-size:24px;color:#bbb;margin-top:10px}#ymd{font-size:34px;margin-top:25px}#clock{font-size:88px;margin-top:10px;font-weight:bold}
+.progress{width:55%;height:12px;background:#222;border-radius:999px;overflow:hidden;margin-top:28px}.fill{height:100%;width:0;background:linear-gradient(90deg,#8c6b00,#d4af37,#ffe38b)}
+#percent{margin-top:10px;color:#bbb}.quote{margin-top:35px;width:60%;font-size:22px;font-style:italic;color:#ccc}.footer{position:absolute;bottom:20px;color:#777}
+</style></head><body><canvas id=c></canvas><div id=wrap><h1>R D A Y</h1><div id=date>JUNE 25 • 2035</div><div id=ymd></div><div id=clock></div><div class=progress><div id=fill class=fill></div></div><div id=percent></div><div class=quote>"Every decision I make today is a vote for the person who will stand on Rday."</div><div class=footer>Journey Started • 25 June 2026</div></div>
+<script>
+const cv=c,x=cv.getContext('2d');function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();onresize=rs;
+const stars=[...Array(260)].map(()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2,v:.1+Math.random()*.3,a:.3+Math.random()*.7}));
+(function d(){x.fillStyle="#020202";x.fillRect(0,0,cv.width,cv.height);for(const s of stars){s.y+=s.v;if(s.y>cv.height){s.y=0;s.x=Math.random()*cv.width}x.beginPath();x.fillStyle=`rgba(255,220,150,${s.a})`;x.arc(s.x,s.y,s.r,0,6.28);x.fill()}requestAnimationFrame(d)})();
+const start=new Date(Date.UTC(2026,5,25)),target=new Date(Date.UTC(2035,5,25));
+function diff(n,t){let y=t.getUTCFullYear()-n.getUTCFullYear(),m=t.getUTCMonth()-n.getUTCMonth(),d=t.getUTCDate()-n.getUTCDate(),h=t.getUTCHours()-n.getUTCHours(),mi=t.getUTCMinutes()-n.getUTCMinutes(),s=t.getUTCSeconds()-n.getUTCSeconds();if(s<0){s+=60;mi--}if(mi<0){mi+=60;h--}if(h<0){h+=24;d--}if(d<0){d+=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),0)).getUTCDate();m--}if(m<0){m+=12;y--}return{y,m,d,h,mi,s}}
+function tick(){const u=new Date(new Date().toISOString()),r=diff(u,target);ymd.textContent=`${r.y} Years • ${r.m} Months • ${r.d} Days`;clock.textContent=`${String(r.h).padStart(2,"0")} : ${String(r.mi).padStart(2,"0")} : ${String(r.s).padStart(2,"0")}`;const pct=Math.max(0,Math.min(1,(u-start)/(target-start)))*100;fill.style.width=pct+"%";percent.textContent=`${pct.toFixed(2)}% Journey Completed • ${(100-pct).toFixed(2)}% Remaining`;}
+tick();setInterval(tick,1000);
+</script></body></html>
